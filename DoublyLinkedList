@@ -1,0 +1,106 @@
+import java.util.Scanner;
+
+public class DoublyLinkedList {
+    Node head;
+    Node tail;
+    int Size;
+
+    class Node{
+        int data;
+        Node next;
+        Node prev;
+
+        Node(){
+            data = 0;
+            next = null;
+            prev = null;
+        }
+
+        Node(int i){
+            data = i;
+            next = null;
+            prev = null;
+        }
+
+        public int getData() {
+            return data;
+        }
+
+        public void setData(int data) {
+            this.data = data;
+        }
+
+    }
+
+    DoublyLinkedList(){
+        Size = 0;
+        head = null;
+        tail = null;
+    }
+
+    public DoublyLinkedList create_a_new_list(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        for(int i = 0; i < n; i++){
+            System.out.print("enter the value of element " + (i + 1) + ": ");
+            int added_element = scanner.nextInt();
+            Node newnode = new Node(added_element);
+
+            if(this.head == null){
+                this.head = this.tail = newnode;
+            }
+            else {
+                this.tail.next = newnode;
+                newnode.prev = this.tail;
+                this.tail = newnode;
+            }
+            this.Size++;
+        }
+
+        return this;
+    }
+
+    public Node traverse(int pos){
+        int count = 1;
+        Node copy_head = this.head;
+        for(int i = count; i < pos; i++){
+            copy_head = copy_head.next;
+        }
+        System.out.println(copy_head.data);
+        return copy_head;
+    }
+
+    public DoublyLinkedList addFirst(){
+        this.head = this.head.next;
+        return this;
+    }
+
+    public DoublyLinkedList addLast(){
+        Node currentNode = traverse()
+        return this;
+    }
+
+    public DoublyLinkedList insert_a_element_in_specific_position(){
+        return this;
+    }
+
+    public void display(){
+        Node copy_head = this.head;
+        while (copy_head != null){
+            System.out.printf(copy_head.data + " ");
+            copy_head = copy_head.next;
+        }
+        System.out.println("\n");
+    }
+
+
+
+    public static void main(String[] args) {
+        DoublyLinkedList L = new DoublyLinkedList();
+        L = L.create_a_new_list();
+        L.display();
+        Node K = L.traverse(2);
+    }
+}
